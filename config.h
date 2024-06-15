@@ -33,21 +33,23 @@ static const char col_Rufous[] = "#AB2C0C";
 static const char col_Orange[] = "#9C4522";
 static const char col_Gold[] = "#DA9100";
 
-
-static const char *colors[][3]      = {
-	/*               fg         bg         border   */
-	[SchemeNorm] = { col_Rufous, col_Night, col_gray2 },
-	[SchemeSel]  = { col_Gold, col_Night,  col_Orange  },
-};
-
+#include "/home/asayel/.cache/wal/colors-wal-dwm.h"
+/*
+*static const char *colors[][3]      = {
+*	/*               fg         bg         border   */
+/*	[SchemeNorm] = { col_Rufous, col_Night, col_gray2 },
+*	[SchemeSel]  = { col_Gold, col_Night,  col_Orange  },
+*};
+*/
 static const unsigned int alphas[][3] = {
   /*               fg      bg        border*/
 [SchemeNorm] = { OPAQUE, baralpha, borderalpha },
 [SchemeSel]  = { OPAQUE, baralpha, borderalpha },
 };
 
+
 /* tagging */
-static const char *tags[] = { "󰈹", "", "", "", "", "", "󰙯", "󰓓", "" };
+static const char *tags[] = { "󰈹", "", "", "", "", "󰺷", "󰙯", "󰓓", "" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -56,7 +58,12 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "firefox",  NULL,       NULL,        0,       0,           -1 },
+  { "jetbrains-studio", NULL, NULL, 1<<3, 0, 0  },
+  {"discord", NULL, NULL, 1<<6,0,0},
+  {"youtube-music", NULL, NULL, 1<<8},
+  {"steam", NULL, NULL, 1<<7},
+
 };
 
 /* layout(s) */
@@ -92,7 +99,10 @@ static const char *lockscreencmd[] = {"i3lock_launch", NULL, NULL};
 
 /*Make Screenshot Flameshot*/
 static const char *screenshotcommand[] = {"flameshot", "gui", NULL};
-
+/*Start Music Player */
+static const char *ytmusiccommand[] = {"youtube-music", NULL, NULL};
+/*Start Firefox*/
+static const char *firefoxcommand[] = {"firefox", NULL,NULL};
 /*Controll Media Player commands*/
 static const char *mediapausecmd[] = {"playerctl", "play-pause", NULL};
 static const char *medianextcmd[] = {"playerctl", "next", NULL};
@@ -144,6 +154,8 @@ static const Key keys[] = {
   { MODKEY|ShiftMask,  		XK_Right,  spawn,          {.v = medianextcmd }},
 	{ MODKEY|ShiftMask,		XK_l,	   spawn,  {.v = lockscreencmd}},
 	{ MODKEY|ShiftMask,   XK_g, spawn, {.v = screenshotcommand}},
+  { MODKEY|ShiftMask, XK_m, spawn, {.v = ytmusiccommand}},
+  { MODKEY|ShiftMask, XK_t, spawn, {.v = firefoxcommand}},
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
