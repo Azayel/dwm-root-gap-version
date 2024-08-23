@@ -66,6 +66,9 @@ static const Rule rules[] = {
 
 };
 
+/* helper for spawning shell commands in the pre dwm-5.0 fashion */
+#define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
+
 /* layout(s) */
 static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
@@ -108,9 +111,12 @@ static const char *mediapausecmd[] = {"playerctl", "play-pause", NULL};
 static const char *medianextcmd[] = {"playerctl", "next", NULL};
 static const char *mediaprevcmd[] = {"playerctl", "previous", NULL};
 
+static const char *rofilauncher[] = {"rofi", "-show", "drun"};
+static const char *rofiwindow[] = {"rofi", "-show", "window"};
+
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_p,      spawn,          {.v = rofilauncher}},
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
